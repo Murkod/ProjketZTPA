@@ -53,14 +53,7 @@ Serwis jest zintegrowany z **Swagger UI**, co umożliwia łatwe testowanie dost�
 
 ## Endpointy
 
-### 1. **GET /**  
-**Opis:** Przekierowanie na Swagger UI.  
-**Odpowiedź:**  
-Przekierowuje na `/swagger`.
-
----
-
-### 2. **POST /data**  
+### 1. **POST /data**  
 **Opis:** Przesyłanie danych w formacie JSON/XML/YAML.  
 **Parametry:**  
 - Treść żądania (`Body`) w jednym z obsługiwanych formatów:
@@ -100,7 +93,7 @@ Przekierowuje na `/swagger`.
 
 ---
 
-### 3. **GET /data/{index}**  
+### 2. **GET /data/{index}**  
 **Opis:** Pobieranie zapisanych danych według indeksu.  
 **Parametry:**  
 - `{index}`: Numer indeksu danych.
