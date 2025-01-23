@@ -5,7 +5,8 @@ using System.Text;
 using Newtonsoft.Json;
 using Microsoft.OpenApi.Any;
 using Newtonsoft.Json.Linq;
-using System.Xml.Linq;
+using Swashbuckle.AspNetCore.SwaggerGen;
+
 
 // Inicjalizacja budowniczego aplikacji
 var builder = WebApplication.CreateBuilder(args);
@@ -100,8 +101,21 @@ app.MapPost("/data", async (HttpContext context) =>
             },
             ["application/xml"] = new OpenApiMediaType
             {
-                Schema = new OpenApiSchema { Type = "string" },
-                Example = new OpenApiString("<root><klucz>wartość</klucz></root>")
+                Schema = new OpenApiSchema
+                {
+                    Type = "object",
+                    Xml = new OpenApiXml
+                    {
+                        Name = "Request",
+                        
+                    }
+                },
+                Example = OpenApiAnyFactory.CreateFromJson(@"{
+                    ""Request"": {
+                        ""Login"": ""przykładowy_login"",
+                        ""Password"": ""przykładowe_hasło""
+                    }
+                }")
             },
             ["application/yaml"] = new OpenApiMediaType
             {
