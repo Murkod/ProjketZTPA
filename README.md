@@ -1,6 +1,4 @@
-Oto pełny plik **README.md** w jednym bloku Markdown:
 
-```markdown
 # System Mikrousług do Przechowywania i Konwersji Danych
 
 Repozytorium zawiera dwa niezależne serwisy .NET 8 Minimal API:
@@ -93,10 +91,7 @@ curl http://localhost:5001/convert/1/yaml
 - Endpointy:
   - `GET /convert/{index}/{format}` - Konwertuj dane
 
----
 
-## Licencja
-[MIT License](LICENSE)
 
 ---
 
@@ -104,16 +99,8 @@ curl http://localhost:5001/convert/1/yaml
 - Marek Matkowski  
 - Patryk Banaszak  
 
-**Wersja:** 1.0.0  
-**Data:** 2024-02-20
-```
 
-### Jak użyć tego pliku:
-1. Skopiuj całą zawartość.
-2. Wklej do nowego pliku o nazwie `README.md`.
-3. Zastąp `twoje-repo` linkiem do Twojego repozytorium.
-4. Dostosuj sekcję **Autorzy** i inne szczegóły.
-5. Dodaj plik `LICENSE` z treścią licencji MIT.
+
 
 ### Co zawiera ten README:
 - Opis architektury systemu.
