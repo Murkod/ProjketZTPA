@@ -1,135 +1,152 @@
-Storage Service API
-Opis
-Storage Service API to prosty serwis API umożliwiający przechowywanie danych w pamięci w formacie JSON, z obsługą różnych formatów wejściowych: JSON, XML oraz YAML. API udostępnia możliwość konwersji danych wejściowych do formatu JSON i ich późniejszego pobierania.
+# Storage Service API
 
-Serwis jest zintegrowany z Swagger UI, co umożliwia łatwe testowanie dostępnych endpointów.
+## Opis
+**Storage Service API** to prosty serwis API umożliwiający przechowywanie danych w pamięci w formacie JSON, z obsługą różnych formatów wejściowych: JSON, XML oraz YAML. API udostępnia możliwość konwersji danych wejściowych do formatu JSON i ich późniejszego pobierania.
 
-Funkcjonalności
-Akceptowanie danych wejściowych w formatach:
-JSON (application/json)
-XML (application/xml, text/xml)
-YAML (application/yaml, text/yaml)
-Automatyczna konwersja danych wejściowych do formatu JSON.
-Przechowywanie danych w pamięci.
-Możliwość pobierania zapisanych danych według indeksu.
-Wbudowana dokumentacja OpenAPI dostępna w Swagger UI.
-Wymagania
-.NET 6 lub nowszy
-Zależności:
-Microsoft.AspNetCore
-Microsoft.OpenApi
-YamlDotNet
-Newtonsoft.Json
-Instalacja
-Sklonuj repozytorium:
+Serwis jest zintegrowany z **Swagger UI**, co umożliwia łatwe testowanie dostępnych endpointów.
 
-bash
-Kopiuj
-Edytuj
-git clone <repository-url>
-cd <repository-directory>
-Przygotuj środowisko:
+---
 
-Upewnij się, że masz zainstalowany .NET 6 lub nowszy.
-Uruchom aplikację:
+## Funkcjonalności
+- Akceptowanie danych wejściowych w formatach:
+  - JSON (`application/json`)
+  - XML (`application/xml`, `text/xml`)
+  - YAML (`application/yaml`, `text/yaml`)
+- Automatyczna konwersja danych wejściowych do formatu JSON.
+- Przechowywanie danych w pamięci.
+- Możliwość pobierania zapisanych danych według indeksu.
+- Wbudowana dokumentacja OpenAPI dostępna w Swagger UI.
 
-bash
-Kopiuj
-Edytuj
-dotnet run
-Swagger UI będzie dostępny pod adresem:
+---
 
-bash
-Kopiuj
-Edytuj
-http://localhost:<port>/swagger
-Endpointy
-1. GET /
-Opis: Przekierowanie na Swagger UI.
-Odpowiedź:
-Przekierowuje na /swagger.
+## Wymagania
+- .NET 6 lub nowszy
+- Zależności:
+  - `Microsoft.AspNetCore`
+  - `Microsoft.OpenApi`
+  - `YamlDotNet`
+  - `Newtonsoft.Json`
 
-2. POST /data
-Opis: Przesyłanie danych w formacie JSON/XML/YAML.
-Parametry:
+---
 
-Treść żądania (Body) w jednym z obsługiwanych formatów:
-JSON: application/json
-XML: application/xml, text/xml
-YAML: application/yaml, text/yaml
-Przykładowe dane wejściowe:
+## Instalacja
+1. Sklonuj repozytorium:
+   ```bash
+   git clone <repository-url>
+   cd <repository-directory>
+   ```
 
-JSON:
-json
-Kopiuj
-Edytuj
-{
-  "key": "value"
-}
-XML:
-xml
-Kopiuj
-Edytuj
-<root>
-  <key>value</key>
-</root>
-YAML:
-yaml
-Kopiuj
-Edytuj
-key: value
-Odpowiedzi:
+2. Przygotuj środowisko:
+   - Upewnij się, że masz zainstalowany .NET 6 lub nowszy.
 
-201 Created:
-Dane zostały zapisane. Zwraca indeks zapisanych danych.
-json
-Kopiuj
-Edytuj
-{
-  "Index": 1
-}
-400 Bad Request:
-Nieobsługiwany format danych.
-Nieprawidłowy format wejściowy.
-3. GET /data/{index}
-Opis: Pobieranie zapisanych danych według indeksu.
-Parametry:
+3. Uruchom aplikację:
+   ```bash
+   dotnet run
+   ```
 
-{index}: Numer indeksu danych.
-Odpowiedzi:
+4. Swagger UI będzie dostępny pod adresem:
+   ```
+   http://localhost:<port>/swagger
+   ```
 
-200 OK:
-Zwraca dane w formacie JSON.
-404 Not Found:
-Dane o podanym indeksie nie istnieją.
-Swagger UI
+---
+
+## Endpointy
+
+### 1. **GET /**  
+**Opis:** Przekierowanie na Swagger UI.  
+**Odpowiedź:**  
+Przekierowuje na `/swagger`.
+
+---
+
+### 2. **POST /data**  
+**Opis:** Przesyłanie danych w formacie JSON/XML/YAML.  
+**Parametry:**  
+- Treść żądania (`Body`) w jednym z obsługiwanych formatów:
+  - **JSON**: `application/json`
+  - **XML**: `application/xml`, `text/xml`
+  - **YAML**: `application/yaml`, `text/yaml`
+
+**Przykładowe dane wejściowe:**
+- **JSON:**
+  ```json
+  {
+    "key": "value"
+  }
+  ```
+- **XML:**
+  ```xml
+  <root>
+    <key>value</key>
+  </root>
+  ```
+- **YAML:**
+  ```yaml
+  key: value
+  ```
+
+**Odpowiedzi:**
+- **201 Created:**  
+  Dane zostały zapisane. Zwraca indeks zapisanych danych.  
+  ```json
+  {
+    "Index": 1
+  }
+  ```
+- **400 Bad Request:**  
+  - Nieobsługiwany format danych.
+  - Nieprawidłowy format wejściowy.
+
+---
+
+### 3. **GET /data/{index}**  
+**Opis:** Pobieranie zapisanych danych według indeksu.  
+**Parametry:**  
+- `{index}`: Numer indeksu danych.
+
+**Odpowiedzi:**
+- **200 OK:**  
+  Zwraca dane w formacie JSON.
+- **404 Not Found:**  
+  Dane o podanym indeksie nie istnieją.
+
+---
+
+## Swagger UI
 Aby zobaczyć szczegółową dokumentację API i przetestować endpointy:
+1. Uruchom aplikację.
+2. Przejdź do:
+   ```
+   http://localhost:<port>/swagger
+   ```
 
-Uruchom aplikację.
-Przejdź do:
-bash
-Kopiuj
-Edytuj
-http://localhost:<port>/swagger
-Przykładowe użycie
-cURL
-Przesyłanie danych (JSON):
+---
 
-bash
-Kopiuj
-Edytuj
-curl -X POST http://localhost:<port>/data \
--H "Content-Type: application/json" \
--d '{"key":"value"}'
-Pobieranie danych:
+## Przykładowe użycie
 
-bash
-Kopiuj
-Edytuj
-curl http://localhost:<port>/data/1
-Swagger
-Otwórz Swagger UI w przeglądarce.
-Wybierz odpowiedni endpoint.
-Przetestuj API bezpośrednio z interfejsu.
-Autorzy
-Kod przygotowany z wykorzystaniem frameworka ASP.NET Core. Zintegrowano funkcje konwersji i walidacji przy użyciu bibliotek Newtonsoft.Json oraz YamlDotNet.
+### cURL
+1. **Przesyłanie danych (JSON):**
+   ```bash
+   curl -X POST http://localhost:<port>/data \
+   -H "Content-Type: application/json" \
+   -d '{"key":"value"}'
+   ```
+
+2. **Pobieranie danych:**
+   ```bash
+   curl http://localhost:<port>/data/1
+   ```
+
+### Swagger
+1. Otwórz Swagger UI w przeglądarce.
+2. Wybierz odpowiedni endpoint.
+3. Przetestuj API bezpośrednio z interfejsu.
+
+---
+
+## Autorzy
+Kod przygotowany z wykorzystaniem frameworka ASP.NET Core. Zintegrowano funkcje konwersji i walidacji przy użyciu bibliotek **Newtonsoft.Json** oraz **YamlDotNet**.
+
+Dalsze pytania? Skontaktuj się z nami!
+
