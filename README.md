@@ -146,9 +146,10 @@ Aby zobaczyć szczegółową dokumentację API i przetestować endpointy:
 ---
 
 ## Autorzy:
-Marek Matkowski
-Patry Banaszak
-Kod przygotowany z wykorzystaniem frameworka ASP.NET Core. Zintegrowano funkcje konwersji i walidacji przy użyciu bibliotek **Newtonsoft.Json** oraz **YamlDotNet**.
+## Marek Matkowski
+## Patry Banaszak
 
-Dalsze pytania? Skontaktuj się z nami!
+##Kod przygotowany z wykorzystaniem frameworka .NET Zintegrowano funkcje konwersji i walidacji przy użyciu bibliotek **Newtonsoft.Json** oraz **YamlDotNet**.
+
+
 
