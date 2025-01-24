@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Xml.Linq;
 using YamlDotNet.Serialization;
 using System.Net.Http.Headers;
+using Microsoft.OpenApi.Any;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,12 +21,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // Konfiguracja HttpClient dla komunikacji z Storage Service
-builder.Services.AddHttpClient("Storage", client =>
-{
-    client.BaseAddress = new Uri("http://localhost:5000");
-    client.DefaultRequestHeaders.Accept.Add(
-        new MediaTypeWithQualityHeaderValue("application/json"));
-});
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
@@ -39,13 +35,13 @@ app.UseSwaggerUI(c =>
 app.MapGet("/", () => Results.Redirect("/swagger"))
    .ExcludeFromDescription();
 
-app.MapGet("/convert/{index}/{format}", async (int index, string format, IHttpClientFactory clientFactory) =>
+app.MapGet("/convert/{index}/{format}", async (int index, string format, HttpClient httpClient) =>
 {
     try
     {
         // Pobierz dane z Storage Service
-        var httpClient = clientFactory.CreateClient("Storage");
-        var response = await httpClient.GetAsync($"/data/{index}");
+        
+        var response = await httpClient.GetAsync($"https://localhost:5000/data/{index}");
         
         if (!response.IsSuccessStatusCode)
             return Results.Problem("Storage service unavailable", statusCode: 503);
