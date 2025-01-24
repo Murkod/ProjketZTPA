@@ -100,11 +100,3 @@ curl http://localhost:5001/convert/1/yaml
 - Patryk Banaszak  
 
 
-
-
-### Co zawiera ten README:
-- Opis architektury systemu.
-- Instrukcje uruchomienia obu serwisów.
-- Przykłady użycia API.
-- Linki do dokumentacji Swagger.
-- Informacje o licencji i autorach.
